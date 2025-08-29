@@ -8,6 +8,11 @@ CREATE OR REPLACE STAGE car_insurance_stage
   ENCRYPTION = ( TYPE = 'SNOWFLAKE_SSE' )
   COMMENT = '自動車保険データのロード用内部ステージ（ディレクトリテーブル、サーバーサイド暗号化有効）';
 
+  CREATE OR REPLACE STAGE handson.car_insurance.terms_and_conditions
+    DIRECTORY = (ENABLE = TRUE)
+    ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE')
+    COMMENT = '約款データのロード用内部ステージ（ディレクトリテーブル、サーバーサイド暗号化有効）';
+
 CREATE OR REPLACE WAREHOUSE handson_wh
   WAREHOUSE_SIZE = 'X-SMALL';
 
