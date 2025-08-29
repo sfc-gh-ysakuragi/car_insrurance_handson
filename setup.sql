@@ -442,10 +442,8 @@ ls @GIT_INTEGRATION_FOR_HANDSON/branches/main;
 
 -- Githubからファイルを持ってくる
 COPY FILES INTO @handson.car_insurance.car_insurance_claim_stage FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/data/ PATTERN = '.*insurance_claim_form\\.pdf$';
-ls @handson.car_insurance.car_insurance_claim_stage;
 
 COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/data/ PATTERN = '.*yakkan_driver_insurance\\.pdf$';
-ls @handson.car_insurance.terms_and_conditions;
 
 
 // Step4: NotebookとStreamlitを作成 //
