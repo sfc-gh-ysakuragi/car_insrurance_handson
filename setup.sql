@@ -3,7 +3,7 @@ CREATE OR REPLACE SCHEMA AGENTS;
 
 CREATE OR REPLACE DATABASE handson;
 CREATE OR REPLACE SCHEMA handson.car_insurance;
-CREATE OR REPLACE STAGE car_insurance_stage
+CREATE OR REPLACE STAGE handson.car_insurance.car_insurance_claim_stage
   DIRECTORY = ( ENABLE = TRUE )
   ENCRYPTION = ( TYPE = 'SNOWFLAKE_SSE' )
   COMMENT = '自動車保険データのロード用内部ステージ（ディレクトリテーブル、サーバーサイド暗号化有効）';
@@ -441,7 +441,7 @@ CREATE OR REPLACE GIT REPOSITORY GIT_INTEGRATION_FOR_HANDSON
 ls @GIT_INTEGRATION_FOR_HANDSON/branches/main;
 
 -- Githubからファイルを持ってくる
-COPY FILES INTO @handson.car_insurance.car_insurance_stage FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/data/ PATTERN = '.*insurance_claim_form\\.pdf$';
+COPY FILES INTO @handson.car_insurance.car_insurance_claim_stage FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/data/ PATTERN = '.*insurance_claim_form\\.pdf$';
 
 COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/data/ PATTERN = '.*yakkan_driver_insurance\\.pdf$';
 
