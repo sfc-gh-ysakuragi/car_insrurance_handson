@@ -435,7 +435,7 @@ CREATE OR REPLACE API INTEGRATION git_api_integration
 -- GIT統合の作成
 CREATE OR REPLACE GIT REPOSITORY GIT_INTEGRATION_FOR_HANDSON
   API_INTEGRATION = git_api_integration
-  ORIGIN = 'git@github.com:sf-yitagaki/car_insrurance_handson.git';
+  ORIGIN = 'https://github.com/sf-yitagaki/car_insrurance_handson.git';
 
 -- チェックする
 ls @GIT_INTEGRATION_FOR_HANDSON/branches/main;
@@ -450,7 +450,7 @@ COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATIO
 
 -- Notebookの作成
 CREATE OR REPLACE NOTEBOOK car_insurance_analysis
-    FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main
+    FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/handson
     MAIN_FILE = 'car_insurance_analysis.ipynb'
     QUERY_WAREHOUSE = handson_WH
     WAREHOUSE = handson_WH;
