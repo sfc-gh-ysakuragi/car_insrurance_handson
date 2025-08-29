@@ -13,9 +13,6 @@ CREATE OR REPLACE STAGE handson.car_insurance.car_insurance_claim_stage
     ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE')
     COMMENT = '約款データのロード用内部ステージ（ディレクトリテーブル、サーバーサイド暗号化有効）';
 
-CREATE OR REPLACE WAREHOUSE handson_wh
-  WAREHOUSE_SIZE = 'X-SMALL';
-
 ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';
 
 
@@ -452,5 +449,5 @@ COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATIO
 CREATE OR REPLACE NOTEBOOK car_insurance_analysis
     FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/handson
     MAIN_FILE = 'CAR_INSURANCE_ANALYSIS.ipynb'
-    QUERY_WAREHOUSE = handson_wh
-    WAREHOUSE = handson_wh;
+    QUERY_WAREHOUSE = compute_wh
+    WAREHOUSE = compute_wh;
