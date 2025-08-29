@@ -444,8 +444,8 @@ COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATIO
 // Step4: NotebookとStreamlitを作成 //
 
 -- Notebookの作成
-CREATE OR REPLACE NOTEBOOK cortex_handson_part1
-    FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/handson1
+CREATE OR REPLACE NOTEBOOK car_insurance_analysis
+    FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main
     MAIN_FILE = 'car_insurance_analysis.ipynb'
     QUERY_WAREHOUSE = handson_WH
     WAREHOUSE = handson_WH;
