@@ -451,6 +451,6 @@ COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATIO
 -- Notebookの作成
 CREATE OR REPLACE NOTEBOOK car_insurance_analysis
     FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/handson
-    MAIN_FILE = 'car_insurance_analysis.ipynb'
+    MAIN_FILE = 'CAR_INSURANCE_ANALYSIS.ipynb'
     QUERY_WAREHOUSE = handson_wh
     WAREHOUSE = handson_wh;
