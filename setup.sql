@@ -1,3 +1,4 @@
+-- 環境の設定
 USE ROLE accountadmin;
 USE WAREHOUSE compute_wh;
 
@@ -9,12 +10,12 @@ CREATE OR REPLACE SCHEMA handson.car_insurance;
 CREATE OR REPLACE STAGE handson.car_insurance.car_insurance_claim_stage
   DIRECTORY = ( ENABLE = TRUE )
   ENCRYPTION = ( TYPE = 'SNOWFLAKE_SSE' )
-  COMMENT = '自動車保険データのロード用内部ステージ（ディレクトリテーブル、サーバーサイド暗号化有効）';
+  COMMENT = '自動車保険データのロード用内部ステージ';
 
   CREATE OR REPLACE STAGE handson.car_insurance.terms_and_conditions
     DIRECTORY = (ENABLE = TRUE)
     ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE')
-    COMMENT = '約款データのロード用内部ステージ（ディレクトリテーブル、サーバーサイド暗号化有効）';
+    COMMENT = '約款データのロード用内部ステージ）';
 
 ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';
 
@@ -305,7 +306,7 @@ picked AS (
   QUALIFY rn = 1
 ),
 limited AS (
-  -- ここで全体 140 件以内に整形（最低100件は確実に確保されます）
+  -- ここで全体 140 件以内に整形（最低100件は確実に確保）
   SELECT *, ROW_NUMBER() OVER (ORDER BY POLICY_ID, INCIDENT_DATE) AS rn_global
   FROM picked
 )
@@ -446,7 +447,7 @@ COPY FILES INTO @handson.car_insurance.car_insurance_claim_stage FROM @GIT_INTEG
 COPY FILES INTO @handson.car_insurance.terms_and_conditions FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/data/ PATTERN = '.*yakkan_driver_insurance\\.pdf$';
 
 
-// Step4: NotebookとStreamlitを作成 //
+// Notebookを作成 //
 
 -- Notebookの作成
 CREATE OR REPLACE NOTEBOOK car_insurance_analysis
