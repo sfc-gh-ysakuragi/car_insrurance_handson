@@ -430,13 +430,13 @@ QUALIFY ROW_NUMBER() OVER (ORDER BY CLAIM_ID, LINE_NO) <= 280
 -- Git連携のため、API統合を作成する
 CREATE OR REPLACE API INTEGRATION git_api_integration
   API_PROVIDER = git_https_api
-  API_ALLOWED_PREFIXES = ('https://github.com/sf-yitagaki/')
+  API_ALLOWED_PREFIXES = ('https://github.com/sfc-gh-ysakuragi/')
   ENABLED = TRUE;
 
 -- GIT統合の作成
 CREATE OR REPLACE GIT REPOSITORY GIT_INTEGRATION_FOR_HANDSON
   API_INTEGRATION = git_api_integration
-  ORIGIN = 'https://github.com/sf-yitagaki/car_insrurance_handson.git';
+  ORIGIN = 'https://github.com/sfc-gh-ysakuragi/car_insrurance_handson.git';
 
 -- チェックする
 ls @GIT_INTEGRATION_FOR_HANDSON/branches/main;
