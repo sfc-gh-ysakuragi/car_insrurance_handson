@@ -455,3 +455,15 @@ CREATE OR REPLACE NOTEBOOK car_insurance_analysis
     MAIN_FILE = 'CAR_INSURANCE_ANALYSIS.ipynb'
     QUERY_WAREHOUSE = compute_wh
     WAREHOUSE = compute_wh;
+
+-- Streamlit App for Cortex Search の作成
+CREATE OR REPLACE STREAMLIT HANDSON.CAR_INSURANCE.CORTEX_SEARCH_SAMPLE
+FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/handson
+MAIN_FILE = 'CortexSearchSampleApp.py'
+QUERY_WAREHOUSE = compute_wh;
+
+-- Streamlit App for Cortex Analyst の作成
+CREATE OR REPLACE STREAMLIT HANDSON.CAR_INSURANCE.CORTEX_ANALYST_SAMPLE
+FROM @GIT_INTEGRATION_FOR_HANDSON/branches/main/handson
+MAIN_FILE = 'CortexAnalystSampleApp.py'
+QUERY_WAREHOUSE = compute_wh;
